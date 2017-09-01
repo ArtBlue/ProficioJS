@@ -1,0 +1,72 @@
+body {
+  font-family: Arial, sans-serif; }
+
+h1 {
+  font-size: 20px; }
+
+h2 {
+  font-size: 18px; }
+
+h3 {
+  font-size: 16px; }
+
+.demo-group {
+  margin: 35px 0;
+  border: 1px solid #ccc;
+  padding: 15px;
+  background: #e1e1e1;
+  border-radius: 5px; }
+
+#demo1-target {
+  height: 200px;
+  background: #efefef;
+  transition: background 500ms ease-in-out; }
+  #demo1-target[data-range-value='0'] {
+    background: #000; }
+  #demo1-target[data-range-value='5'] {
+    background: #ccc; }
+  #demo1-target[data-range-value='10'] {
+    background: #f67; }
+  #demo1-target[data-range-value='15'] {
+    background: #ff6600; }
+  #demo1-target[data-range-value='20'] {
+    background: #ffcc00; }
+  #demo1-target[data-range-value='25'] {
+    background: #69c; }
+  #demo1-target[data-range-value='30'] {
+    background: yellow; }
+  #demo1-target[data-range-value='35'] {
+    background: magenta; }
+  #demo1-target[data-range-value='40'] {
+    background: teal; }
+  #demo1-target[data-range-value='45'] {
+    background: green; }
+
+#demo2-target {
+  display: table-cell;
+  height: 200px;
+  width: 100%;
+  background: #efefef; }
+  #demo2-target[data-range-value='0'] {
+    background: #000; }
+  #demo2-target[data-range-value='10'] {
+    background: #ccc; }
+  #demo2-target[data-range-value='20'] {
+    background: #f67; }
+  #demo2-target[data-range-value='30'] {
+    background: #ff6600; }
+  #demo2-target[data-range-value='40'] {
+    background: #ffcc00; }
+  #demo2-target[data-range-value='50'] {
+    background: #69c; }
+  #demo2-target[data-range-value='60'] {
+    background: yellow; }
+  #demo2-target[data-range-value='70'] {
+    background: magenta; }
+  #demo2-target[data-range-value='80'] {
+    background: teal; }
+  #demo2-target[data-range-value='90'] {
+    background: green; }
+
+.proficio-range-vertical {
+  display: table-cell; }

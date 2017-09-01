@@ -1,0 +1,131 @@
+// demo.scss
+
+body {
+	font-family: Arial, sans-serif;
+}
+
+h1 {
+	font-size: 20px;
+}
+
+h2 {
+	font-size: 18px;
+}
+
+h3 {
+	font-size: 16px;
+}
+
+.demo-group {
+	margin: 35px 0;
+    border: 1px solid #ccc;
+    padding: 15px;
+    background: #e1e1e1;
+    border-radius: 5px;
+}
+
+// demo1 visuals
+
+// core view and default settings
+#demo1-target {
+	height: 200px;
+	background: #efefef;
+	transition: background 500ms ease-in-out;
+
+		&[data-range-value='0'] {
+			background: #000;
+		}
+
+		&[data-range-value='5'] {
+			background: #ccc;
+		}
+
+		&[data-range-value='10'] {
+			background: #f67;
+		}
+
+		&[data-range-value='15'] {
+			background: #ff6600;
+		}
+
+		&[data-range-value='20'] {
+			background: #ffcc00;
+		}
+
+		&[data-range-value='25'] {
+			background: #69c;
+		}
+
+		&[data-range-value='30'] {
+			background: yellow;
+		}
+
+		&[data-range-value='35'] {
+			background: magenta;
+		}
+
+		&[data-range-value='40'] {
+			background: teal;
+		}
+
+		&[data-range-value='45'] {
+			background: green;
+		}
+}
+
+// demo2 visuals
+
+// core view and default settings
+#demo2-target {
+	display: table-cell;
+	height: 200px;
+	width: 100%;
+	background: #efefef;
+
+		&[data-range-value='0'] {
+			background: #000;
+		}
+
+		&[data-range-value='10'] {
+			background: #ccc;
+		}
+
+		&[data-range-value='20'] {
+			background: #f67;
+		}
+
+		&[data-range-value='30'] {
+			background: #ff6600;
+		}
+
+		&[data-range-value='40'] {
+			background: #ffcc00;
+		}
+
+		&[data-range-value='50'] {
+			background: #69c;
+		}
+
+		&[data-range-value='60'] {
+			background: yellow;
+		}
+
+		&[data-range-value='70'] {
+			background: magenta;
+		}
+
+		&[data-range-value='80'] {
+			background: teal;
+		}
+
+		&[data-range-value='90'] {
+			background: green;
+		}
+}
+
+// for the demo, we're going to adjust the styling of the veritcal range
+.proficio-range-vertical {
+	display: table-cell;
+}
+
+
