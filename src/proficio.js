@@ -163,6 +163,13 @@ function Proficio(config) {
 		return newEl;
 	}
 
+	/**
+	 * Round number
+	 * @method _round
+	 * @param  {number} num       the number to round
+	 * @param  {number} precision the number of places to round to
+	 * @return {number}           the rounded number
+	 */
 	function _round(num, precision) {
 		var factor = Math.pow(10, precision);
 		var tempNumber = num * factor;
