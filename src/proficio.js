@@ -110,7 +110,7 @@ function Proficio(config) {
 	 * Set range value directly
 	 * @method set
 	 * @public
-	 * @param  {string} direction direction of step - 'up' or 'down'
+	 * @param  {number} val the new value of the range
 	 * @return {undefined}
 	 */
 	this.set = function(val) {
