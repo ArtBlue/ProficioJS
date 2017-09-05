@@ -101,3 +101,8 @@ NOTE: It's best to include granularity that matches the specific milestones of y
 * `orientation` - 'h' for horizontal, 'v' for vertical
 * `callback` - the custom callback function for advanced implementations. You can use `this` to access the specific Proficio instance.
 
+### API Methods
+
+`step(direction)` - Allows for stepping through the range from the outside. `direction` can be `up` or `down`. If the current range value is `50` and the `granularity` is `10`, calling `instance.step('up')` would result in the value of `60` and `instance.step('down')` would result in `40`.
+
+`set(value)` - Allows for value of the range to be set from the outside. Calling `instance.set('10')` would result in the instance value to be set to `10`.
