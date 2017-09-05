@@ -53,12 +53,20 @@
 			, myProficio2 = new Proficio(options2)
 			, myProficio3 = new Proficio(options3)
 			, btnStepper = document.querySelector('.rangeStepper')
+			, demo3Form = document.querySelector('#demo3-form')
+			, demo3Input = document.querySelector('#demo3-input')
+			, myProficio3Submit = demo3Form.addEventListener('submit', function(e){
+				e.preventDefault();
+				// set the range value directly
+				myProficio3.set(demo3Input.value);
+			}, false)
 			, myProficio3Change = btnStepper.addEventListener('click', function(e){
 				var tar = e.target
 					, dir = tar.getAttribute('data-direction')
 				;
+				// step up/down on the range directly
 				myProficio3.step(dir);
-			}, false);
+			}, false)
 		;
 
 		console.warn(myProficio1, myProficio2, myProficio3);

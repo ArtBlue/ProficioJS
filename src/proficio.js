@@ -32,6 +32,8 @@ function Proficio(config) {
 
 	/**
 	 * Call a stepUp() or stepDown() on the range input element and force onChange event
+	 * @method step
+	 * @public
 	 * @param  {string} direction direction of step - 'up' or 'down'
 	 * @return {undefined}
 	 */
@@ -47,6 +49,18 @@ function Proficio(config) {
 		}
 
 		_forceOnChange(rangeEl);
+	}
+
+	/**
+	 * Set range value directly
+	 * @method set
+	 * @public
+	 * @param  {string} direction direction of step - 'up' or 'down'
+	 * @return {undefined}
+	 */
+	this.set = function(val) {
+		this.val = this.rangeEl.value = val;
+		_forceOnChange(this.rangeEl);
 	}
 
 	_setupTarget.call(this);
