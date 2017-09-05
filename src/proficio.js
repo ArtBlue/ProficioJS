@@ -1,5 +1,7 @@
 /**
  * Proficio JS  - an abstract interactive range visualization engine that allows for a wide variety of implemntations.
+ * @namespace Proficio
+ * @constructor
  * @version 	0.2.0
  * @author 		Arthur Khachatryan <arthur@aspiremedia.net>
  * @license  	http://opensource.org/licenses/MIT  	MIT License
@@ -125,6 +127,7 @@ function Proficio(config) {
 	/**
 	 * Creates the range element
 	 * @method _createRange
+	 * @private
 	 * @property {string} rangeClasses range classes to be added to the range container
 	 * @return {undefined}
 	 */
@@ -164,6 +167,7 @@ function Proficio(config) {
 	/**
 	 * Set up all the events
 	 * @method _setupEvents
+	 * @private
 	 * @property {object} self copy of instance
 	 * @return {undefined}
 	 */
@@ -179,6 +183,7 @@ function Proficio(config) {
 	/**
 	 * On range change callback
 	 * @method _onRangeChange
+	 * @private
 	 * @param  {object} e event object
 	 * @property {number} nProgress progress number rounded down to 2 decimal places
 	 * @return {undefined}
@@ -191,6 +196,8 @@ function Proficio(config) {
 
 	/**
 	 * Force onChange event for instances in which it does not get fired (direct value change)
+	 * @method _forceOnChange
+	 * @private
 	 * @param  {DOMElement} element the element on which to fire the onChange event
 	 * @return {undefined}
 	 */
@@ -209,6 +216,7 @@ function Proficio(config) {
 	/**
 	 * Set up the target element
 	 * @method _setupTarget
+	 * @private
 	 * @return {undefined}
 	 */
 	function _setupTarget() {
@@ -228,6 +236,7 @@ function Proficio(config) {
 	/**
 	 * Append DOM element with its own features to parent element
 	 * @method      _appendChild
+	 * @private
 	 * @param       {object}        args                the arguments object
 	 * @property    {DOMElement}    args.elParent       the parent DOM element   
 	 * @property    {string}        args.newTag         the new HTML tag to be created  
@@ -270,6 +279,7 @@ function Proficio(config) {
 	/**
 	 * Round number
 	 * @method _round
+	 * @private
 	 * @param  {number} num       the number to round
 	 * @param  {number} precision the number of places to round to
 	 * @return {number}           the rounded number

@@ -4,11 +4,12 @@ var gulp = require('gulp')
 	, sourcemaps = require('gulp-sourcemaps')
 	, uglify = require('gulp-uglify')
 	, rename = require('gulp-rename')
+	, jsdoc = require('gulp-jsdoc3')
 ;
 
-gulp.task('watch', ['browserSync', 'sass', 'build-js'], function(){
+gulp.task('watch', ['browserSync', 'sass', 'doc', 'build-js'], function(){
 	gulp.watch('scss/**/*.scss', ['sass']);
-	gulp.watch('src/**/*.js', ['build-js']); 
+	gulp.watch('src/**/*.js', ['doc', 'build-js']);
 	// Other watchers
 })
 
@@ -31,13 +32,15 @@ gulp.task('browserSync', function() {
 
 gulp.task('build-js', function() {
 	return gulp.src('src/**/*.js')
-		//.pipe(sourcemaps.init())
-		// .pipe(concat('bundle.js'))
-		//only uglify if gulp is ran with '--type production'
 		.pipe(uglify())
-		//.pipe(sourcemaps.write())
 		.pipe(rename({
 			suffix: '.min'
 		}))
 		.pipe(gulp.dest('dist/'));
+});
+
+gulp.task('doc', function (cb) {
+	var config = require('./jsdoc.json');
+	gulp.src(['README.md', 'src/**/*.js'], {read: false})
+		.pipe(jsdoc(config, cb));
 });

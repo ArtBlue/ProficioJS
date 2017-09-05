@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title>Documentation Index</title>
+
+	<!--[if lt IE 9]>
+	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+	<link type="text/css" rel="stylesheet" href="styles/sunlight.default.css">
+
+	<link type="text/css" rel="stylesheet" href="styles/site.cerulean.css">
+
+</head>
+
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top ">
+<div class="container">
+	<div class="navbar-header">
+		<a class="navbar-brand" href="index.html">Documentation</a>
+		<button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#topNavigation">
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+        </button>
+	</div>
+	<div class="navbar-collapse collapse" id="topNavigation">
+		<ul class="nav navbar-nav">
+			
+			<li class="dropdown">
+				<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
+				<ul class="dropdown-menu ">
+					<li><a href="Proficio.html">Proficio</a></li>
+				</ul>
+			</li>
+			
+			<li class="dropdown">
+				<a href="global.html" class="dropdown-toggle" data-toggle="dropdown">Global<b class="caret"></b></a>
+				<ul class="dropdown-menu ">
+					<li><a href="global.html#set">set</a></li><li><a href="global.html#step">step</a></li>
+				</ul>
+			</li>
+			
+		</ul>
+        
+            <div class="col-sm-3 col-md-3">
+                <form class="navbar-form" role="search">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search" name="q" id="search-input">
+                        <div class="input-group-btn">
+                            <button class="btn btn-default" id="search-submit"><i class="glyphicon glyphicon-search"></i></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        
+	</div>
+
+</div>
+</div>
+
+
+<div class="container" id="toc-content">
+<div class="row">
+
+	
+	<div class="col-md-8">
+	
+		<div id="main">
+			
+
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+
+
+
+
+
+    <section class="readme-section">
+        <article><h1>Proficio JS</h1><p>Proficio JS is an abstract interactive range visualization engine that allows for a wide variety of implemntations. You can use Proficion JS to build things like,</p>
+<ol>
+<li>Time-lapse of maps and countries through history.</li>
+<li>Cross-fading graphics from one range value to another.</li>
+<li>Interactive timeline</li>
+<li>interactive infographics</li>
+<li>Anything that changes and can be visualized</li>
+</ol>
+<p>Since Proficio JS is merely an abstract engine, the possibilities for what you can build are endless. There is enough flexibility to allow for anything. Anything that changes (everything) and can be visualized can be built for the web using Proficio JS. It uses the input range element native to HTML and is written in vanilla JS and CSS3, which means that it works everywhere - on all types of browsers and devices. The only exceptions are ancient browsers (IE &lt; 9). It won't work in those.</p>
+<h2>Implementation</h2><p>The basic implementation requires very little. Here's how to get started:</p>
+<ol>
+<li>Set up your basic HTML structure:</li>
+</ol>
+<pre class="prettyprint source lang-html"><code>&lt;div id=&quot;demo1&quot;>&lt;/div>
+&lt;div id=&quot;demo1-target&quot;>&lt;/div></code></pre><ol>
+<li>Add the Proficio JS file before you close <body>.</li>
+</ol>
+<pre class="prettyprint source lang-html"><code>&lt;script type=&quot;text/javascript&quot; src=&quot;dist/proficio..min.js&quot;>&lt;/script></code></pre><ol>
+<li>Instantiate Proficio JS after DOMContentLoaded:</li>
+</ol>
+<pre class="prettyprint source lang-javascript"><code>document.addEventListener('DOMContentLoaded',function() {
+    var options1 = {
+        id: 'demo1',
+        name: 'demo1',
+        targetContainer: '#demo1-target',
+        rangeContainer: '#demo1',
+        val: 25,
+        min: 0,
+        max: 100,
+        granularity: &quot;5&quot;,
+        orientation: 'h'
+    }
+    var myProficio1 = new Proficio(options1);
+},false);</code></pre><ol>
+<li>Write CSS to match the different milestone levels:</li>
+</ol>
+<pre class="prettyprint source lang-css"><code>#demo1-target {
+    height: 200px;
+    background: #efefef;
+    transition: background 500ms ease-in-out;
+}
+#demo1-target[data-range-value='0'] {
+    background: #000;
+}
+#demo1-target[data-range-value='5'] {
+    background: #ccc;
+}
+#demo1-target[data-range-value='10'] {
+    background: #f67;
+}
+#demo1-target[data-range-value='15'] {
+    background: #ff6600;
+}
+#demo1-target[data-range-value='20'] {
+    background: #ffcc00;
+}
+#demo1-target[data-range-value='25'] {
+    background: #69c;
+}
+#demo1-target[data-range-value='30'] {
+    background: yellow;
+}
+#demo1-target[data-range-value='35'] {
+    background: magenta;
+}
+#demo1-target[data-range-value='40'] {
+    background: teal;
+}
+#demo1-target[data-range-value='45'] {
+    background: green;
+}</code></pre><ol>
+<li>That's it! When your range value matches the range value specified in your CSS, your target container will be styled with whatever you specify under the spcific declaration.</li>
+</ol>
+<p>NOTE: It's best to include granularity that matches the specific milestones of your range. If Granularity is not included, Proficio JS will default to a number with 2 decimal places, which may be a bit harder to match to a range milestone and may require a large number of style declarations.</p>
+<h3>Configuration</h3><ul>
+<li><code>id</code> - unique ID of your Proficio instance.</li>
+<li><code>name</code> - name of your Proficion instance (this is simply for the sake of flexibility; can be the same as the ID).</li>
+<li><code>targetContainer</code> - the selector of the target element that will get all the styles applied.</li>
+<li><code>rangeContainer</code> - the selector of the range element container in which the range input element will be created with the corresponding settings.</li>
+<li><code>val</code> - the initial value of the range.</li>
+<li><code>min</code> - the minimum value of the range.</li>
+<li><code>max</code> - the maximum value of the range.</li>
+<li><code>granularity</code> - the value will be changed by the level of granularity passed in (if 5, then the range will change only by 5s). <strong>It's highly recommended to use this as its exclusion may yield extreme weirdness!</strong></li>
+<li><code>orientation</code> - 'h' for horizontal, 'v' for vertical</li>
+<li><code>callback</code> - the custom callback function for advanced implementations. You can use <code>this</code> to access the specific Proficio instance.</li>
+</ul>
+<h3>API Methods</h3><p><code>step(direction)</code> - Allows for stepping through the range from the outside. <code>direction</code> can be <code>up</code> or <code>down</code>. If the current range value is <code>50</code> and the <code>granularity</code> is <code>10</code>, calling <code>instance.step('up')</code> would result in the value of <code>60</code> and <code>instance.step('down')</code> would result in <code>40</code>.</p>
+<p><code>set(value)</code> - Allows for value of the range to be set from the outside. Calling <code>instance.set('10')</code> would result in the instance value to be set to <code>10</code>.</p></article>
+    </section>
+
+
+
+
+
+
+
+		</div>
+	</div>
+
+	<div class="clearfix"></div>
+
+	
+		<div class="col-md-3">
+			<div id="toc" class="col-md-3 hidden-xs hidden-sm hidden-md"></div>
+		</div>
+	
+
+</div>
+</div>
+
+
+    <div class="modal fade" id="searchResults">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Search results</h4>
+          </div>
+          <div class="modal-body"></div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div>
+
+
+<footer>
+
+
+<span class="jsdoc-message">
+	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.4</a>
+	
+		on September 5th 2017, 1:13:29 pm
+	
+	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
+</span>
+</footer>
+
+<script src="scripts/docstrap.lib.js"></script>
+<script src="scripts/toc.js"></script>
+
+    <script type="text/javascript" src="scripts/fulltext-search-ui.js"></script>
+
+
+<script>
+$( function () {
+	$( "[id*='$']" ).each( function () {
+		var $this = $( this );
+
+		$this.attr( "id", $this.attr( "id" ).replace( "$", "__" ) );
+	} );
+
+	$( ".tutorial-section pre, .readme-section pre, pre.prettyprint.source" ).each( function () {
+		var $this = $( this );
+
+		var example = $this.find( "code" );
+		exampleText = example.html();
+		var lang = /{@lang (.*?)}/.exec( exampleText );
+		if ( lang && lang[1] ) {
+			exampleText = exampleText.replace( lang[0], "" );
+			example.html( exampleText );
+			lang = lang[1];
+		} else {
+			var langClassMatch = example.parent()[0].className.match(/lang\-(\S+)/);
+			lang = langClassMatch ? langClassMatch[1] : "javascript";
+		}
+
+		if ( lang ) {
+
+			$this
+			.addClass( "sunlight-highlight-" + lang )
+			.addClass( "linenums" )
+			.html( example.html() );
+
+		}
+	} );
+
+	Sunlight.highlightAll( {
+		lineNumbers : true,
+		showMenu : true,
+		enableDoclinks : true
+	} );
+
+	$.catchAnchorLinks( {
+        navbarOffset: 10
+	} );
+	$( "#toc" ).toc( {
+		anchorName  : function ( i, heading, prefix ) {
+			return $( heading ).attr( "id" ) || ( prefix + i );
+		},
+		selectors   : "#toc-content h1,#toc-content h2,#toc-content h3,#toc-content h4",
+		showAndHide : false,
+		smoothScrolling: true
+	} );
+
+	$( "#main span[id^='toc']" ).addClass( "toc-shim" );
+	$( '.dropdown-toggle' ).dropdown();
+
+    $( "table" ).each( function () {
+      var $this = $( this );
+      $this.addClass('table');
+    } );
+
+} );
+</script>
+
+
+
+<!--Navigation and Symbol Display-->
+
+
+<!--Google Analytics-->
+
+
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            SearcherDisplay.init();
+        });
+    </script>
+
+
+</body>
+</html>
