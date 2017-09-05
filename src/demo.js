@@ -36,10 +36,32 @@
 		}
 	}
 
-	document.addEventListener('DOMContentLoaded',function() {
-		var myProficio1 = new Proficio(options1);
-		var myProficio2 = new Proficio(options2);
+	var options3 = {
+		id: 'demo3',
+		name: 'demo3',
+		targetContainer: '#demo3-target',
+		rangeContainer: '#demo3',
+		val: 25,
+		min: 0,
+		max: 100,
+		granularity: "5",
+		orientation: 'h'
+	}
 
-		console.warn(myProficio1, myProficio2);
+	document.addEventListener('DOMContentLoaded',function() {
+		var myProficio1 = new Proficio(options1)
+			, myProficio2 = new Proficio(options2)
+			, myProficio3 = new Proficio(options3)
+			, btnStepper = document.querySelector('.rangeStepper')
+			, myProficio3Change = btnStepper.addEventListener('click', function(e){
+				var tar = e.target
+					, dir = tar.getAttribute('data-direction')
+				;
+				myProficio3.step(dir);
+			}, false);
+		;
+
+		console.warn(myProficio1, myProficio2, myProficio3);
 	},false);
+
 })();

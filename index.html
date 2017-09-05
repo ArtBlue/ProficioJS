@@ -11,20 +11,30 @@
 </head>
 <body>
 	<h1>Proficio JS</h1>
-	<!-- <div class="proficio-range-horizontal">
-		<input type="range" name="proficio-range" min="0" max="100">
-	</div> -->
 
 	<div class="demo-group">
 		<h2>Demo 1</h2>
+		<p>Simple demo</p>
 		<div id="demo1"></div>
 		<div id="demo1-target"></div>
 	</div>
 
 	<div class="demo-group">
 		<h2>Demo 2 (vertical)</h2>
+		<p>Advanced demo with custom callback for range changes</p>
 		<div id="demo2"></div>
 		<div id="demo2-target"></div>
+	</div>
+
+	<div class="demo-group">
+		<h2>Demo 3</h2>
+		<p>Advanced demo with external `stepUp()` and `stepDown()`</p>
+		<div class="rangeStepper">
+			<button id="demo3-stepUp" data-direction="up">+</button>
+			<button id="demo3-stepDown" data-direction="down">-</button>
+		</div>
+		<div id="demo3"></div>
+		<div id="demo3-target"></div>
 	</div>
 
 	<script type="text/javascript" src="src/proficio.js"></script>
