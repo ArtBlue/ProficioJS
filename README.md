@@ -97,7 +97,7 @@ NOTE: It's best to include granularity that matches the specific milestones of y
 * `val` - the initial value of the range.
 * `min` - the minimum value of the range.
 * `max` - the maximum value of the range.
-* `granularity` - the value will be changed by the level of granularity passed in (if 5, then the range will change only by 5s).
+* `granularity` - the value will be changed by the level of granularity passed in (if 5, then the range will change only by 5s). **It's highly recommended to use this as its exclusion may yield extreme weirdness!**
 * `orientation` - 'h' for horizontal, 'v' for vertical
 * `callback` - the custom callback function for advanced implementations. You can use `this` to access the specific Proficio instance.
 
