@@ -1,6 +1,59 @@
-
-
-
+/**
+ * Proficio JS  - an abstract interactive range visualization engine that allows for a wide variety of implemntations.
+ * @version 	0.2.0
+ * @author 		Arthur Khachatryan <arthur@aspiremedia.net>
+ * @license  	http://opensource.org/licenses/MIT  	MIT License
+ * @beta
+ * @param 		{object} 	config 				configuration object
+ * @param 		{string} 	config.id 			id of the instance
+ * @param 		{string} 	[config.name] 		optional name of the instance
+ * @param 		{number} 	[config.val] 		initial value of range
+ * @param 		{number} 	config.min 			minimum possible value of the range
+ * @param 		{number} 	config.max 			maximum possible value of the range
+ * @param 		{number} 	config.granularity 	the granularity of each step in the range; technically this is optional, but excluding it may cause a lot of weirdness
+ * @param 		{string} 	[config.orientation] 'h' for horizontal (default), 'v' for vertical
+ * @param 		{function} 	[config.callback] 	optional custom callback function for handling range changes
+ * @example <caption>basic usage</caption>
+ * var options = {
+ *		id: 'demo1',
+ *		targetContainer: '#demo1-target',
+ *		rangeContainer: '#demo1',
+ *		val: 25,
+ *		min: 0,
+ *		max: 100,
+ *		granularity: "5"
+ *	}
+ *	var myProficio1 = new Proficio(options1);
+ * @example <caption>vertical usage</caption>
+ * var options = {
+ *		id: 'demo1',
+ *		name: 'demo1',
+ *		targetContainer: '#demo1-target',
+ *		rangeContainer: '#demo1',
+ *		val: 25,
+ *		min: 0,
+ *		max: 100,
+ *		granularity: "5",
+ *		orientation: 'v'
+ *	}
+ *	var myProficio2 = new Proficio(options);
+ * @example <caption>advanced usage w/callback</caption>
+ * var options = {
+ *		id: 'demo1',
+ *		name: 'demo1',
+ *		targetContainer: '#demo1-target',
+ *		rangeContainer: '#demo1',
+ *		val: 25,
+ *		min: 0,
+ *		max: 100,
+ *		granularity: "5",
+ *		callback: function(){
+ *			// do my own cool stuff here...
+ *			console.log(this.val); // getting the value of the newly set range
+ *		}
+ *	}
+ *	var myProficio3 = new Proficio(options);
+ */
 function Proficio(config) {
 	// not called with config, fail fast
 	if (!config || !config.targetContainer || !config.rangeContainer) {
@@ -12,8 +65,8 @@ function Proficio(config) {
 
 	// settings
 	this.id = config.id;
-	this.name = config.name;
-	this.val = config.val;
+	this.name = config.name || '';
+	this.val = config.val || '';
 	this.min = config.min || 0;
 	this.max = config.max || 100;
 	this.granularity = config.granularity || 'any';
