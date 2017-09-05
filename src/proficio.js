@@ -30,6 +30,25 @@ function Proficio(config) {
 	this.fnOnRangeChange = null;
 	this.fnCustomCB = null;
 
+	/**
+	 * Call a stepUp() or stepDown() on the range input element and force onChange event
+	 * @param  {string} direction direction of step - 'up' or 'down'
+	 * @return {undefined}
+	 */
+	this.step = function(direction) {
+		var rangeEl = this.rangeEl;
+
+		if (direction === 'up') {
+			rangeEl.stepUp();
+		} else if (direction === 'down') {
+			rangeEl.stepDown();
+		} else {
+			return;
+		}
+
+		_forceOnChange(rangeEl);
+	}
+
 	_setupTarget.call(this);
 	_createRange.call(this);
 	_setupEvents.call(this);
@@ -62,7 +81,6 @@ function Proficio(config) {
 			elParent: this.rangeEl,
 			newTag: 'input',
 			newElID: this.id,
-			// elClasses: rangeClasses,
 			attribs: [
 				{ aName: 'type',        aVal: 'range' },
 				{ aName: 'name',        aVal: this.id },
@@ -104,6 +122,28 @@ function Proficio(config) {
 		this.val = nProgress;
 	}
 
+	/**
+	 * Force onChange event for instances in which it does not get fired (direct value change)
+	 * @param  {DOMElement} element the element on which to fire the onChange event
+	 * @return {undefined}
+	 */
+	function _forceOnChange(element) {
+		var evt;
+
+		if ("createEvent" in document) {
+			evt = document.createEvent("HTMLEvents");
+			evt.initEvent("change", false, true);
+			element.dispatchEvent(evt);
+		} else {
+			element.fireEvent("onchange");
+		}
+	}
+
+	/**
+	 * Set up the target element
+	 * @method _setupTarget
+	 * @return {undefined}
+	 */
 	function _setupTarget() {
 		var targetEl = this.targetEl
 			, currentTargetClasses = targetEl.classList || ''
@@ -115,10 +155,7 @@ function Proficio(config) {
 			targetEl.classList = currentTargetClasses + ' ' + this.targetContainerCss;
 		}
 
-		// add default value of the range as an attribute of the target
 		rangeAttr = targetEl.setAttribute(TARGET_ATTR_RANGE_VALUE, this.val);
-		//rangeAttr.value = this.val;
-		//targetEl.setAttributeNode(rangeAttr); // set range attribute
 	}
 
 	/**

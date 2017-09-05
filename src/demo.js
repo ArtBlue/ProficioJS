@@ -30,7 +30,7 @@
 				, myNewOpacity = myRangeVal/100;
 			;
 			console.log('My custom callback with my Proficio JS instance: ', myRangeInstance)
-			console.log('Setting the opacity of the target based on the progress made in the range...');
+			console.log('Setting the opacity of the target based on the progress made in the range: ' + myNewOpacity);
 
 			myTargetElem.style.cssText = 'opacity: ' + myNewOpacity;
 		}
