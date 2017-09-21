@@ -15,6 +15,7 @@
  * @param 		{number} 	config.granularity 	the granularity of each step in the range; technically this is optional, but excluding it may cause a lot of weirdness
  * @param 		{string} 	[config.orientation] 'h' for horizontal (default), 'v' for vertical
  * @param 		{function} 	[config.callback] 	optional custom callback function for handling range changes
+ * @param 		{number} 	[config.playSpeed] 	speed (in ms) at which to play, which defaults to 100ms if none passed in
  * @example <caption>basic usage</caption>
  * var options = {
  *		id: 'demo1',
@@ -55,6 +56,25 @@
  *		}
  *	}
  *	var myProficio3 = new Proficio(options);
+ *	@example <caption>auto-playing Proficio with custom speed (in ms)</caption>
+ * var options = {
+ *		id: 'demo1',
+ *		name: 'demo1',
+ *		targetContainer: '#demo1-target',
+ *		rangeContainer: '#demo1',
+ *		val: 25,
+ *		min: 0,
+ *		max: 100,
+ *		granularity: "5",
+ *		playSpeed: 250
+ *	}
+ *	var myProficio4 = new Proficio(options);
+ *	// start playing Proficio automatically or on some click event
+ *	myProficio4.play();
+ *	// pause Proficio at the current marker
+ *	myProficio4.pause();
+ *	// stop Proficio and reset to min marker
+ *	myProficio4.stop();
  */
 function Proficio(config) {
 	// not called with config, fail fast
@@ -74,6 +94,8 @@ function Proficio(config) {
 	this.granularity = config.granularity || 'any';
 	this.orientation = config.orientation || 'h';
 	this.callback = config.callback;
+	this.playSpeed = config.playSpeed || 100;
+	this.playInterval = null;
 
 	// range and target container element information
 	this.targetContainer = config.targetContainer;
@@ -84,6 +106,50 @@ function Proficio(config) {
 	this.rangeEl = document.querySelector(this.rangeContainer);
 	this.fnOnRangeChange = null;
 	this.fnCustomCB = null;
+
+	/**
+	 * Play the Proficio range
+	 * @method play
+	 * @public
+	 * @return {undefined}
+	 */
+	this.play = function() {
+		var self = this;
+
+		// if playing has reached the end, reset interval and start playing again from min
+		if (self.val === self.max) {
+			self.set(self.min);
+			clearInterval(self.playInterval);
+		}
+		this.playInterval = setInterval(function(){
+			self.step('up');
+
+			if (this.val === this.max - 1) {
+				clearInterval(self.playInterval);
+			}
+		}, self.playSpeed);
+	};
+
+	/**
+	 * Pause the Proficio range at the current marker
+	 * @method pause
+	 * @public
+	 * @return {undefined}
+	 */
+	this.pause = function() {
+		clearInterval(this.playInterval);
+	};
+
+	/**
+	 * Stop the Proficio range and reset the marker to range min
+	 * @method stop
+	 * @public
+	 * @return {undefined}
+	 */
+	this.stop = function() {
+		clearInterval(this.playInterval);
+		this.set(this.min);
+	};
 
 	/**
 	 * Call a stepUp() or stepDown() on the range input element and force onChange event
@@ -104,7 +170,7 @@ function Proficio(config) {
 		}
 
 		_forceOnChange(rangeEl);
-	}
+	};
 
 	/**
 	 * Set range value directly
@@ -116,7 +182,7 @@ function Proficio(config) {
 	this.set = function(val) {
 		this.val = this.rangeEl.value = val;
 		_forceOnChange(this.rangeEl);
-	}
+	};
 
 	_setupTarget.call(this);
 	_createRange.call(this);

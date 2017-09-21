@@ -12,20 +12,20 @@ Since Proficio JS is merely an abstract engine, the possibilities for what you c
 ## Implementation
 The basic implementation requires very little. Here's how to get started:
 
-1. Set up your basic HTML structure:
+### a. Set up your basic HTML structure:
 
 ```html
 <div id="demo1"></div>
 <div id="demo1-target"></div>
 ```
 
-2. Add the Proficio JS file before you close <body>.
+### b. Add the Proficio JS file before you close <body>.
 
 ```html
 <script type="text/javascript" src="dist/proficio..min.js"></script>
 ```
 
-3. Instantiate Proficio JS after DOMContentLoaded:
+### c. Instantiate Proficio JS after DOMContentLoaded:
 
 ```javascript
 document.addEventListener('DOMContentLoaded',function() {
@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded',function() {
 },false);
 ```
 
-4. Write CSS to match the different milestone levels:
+### d. Write CSS to match the different milestone levels:
 
 ```css
 #demo1-target {
@@ -84,7 +84,8 @@ document.addEventListener('DOMContentLoaded',function() {
 }
 ```
 
-5. That's it! When your range value matches the range value specified in your CSS, your target container will be styled with whatever you specify under the spcific declaration.
+### e. That's it!
+When your range value matches the range value specified in your CSS, your target container will be styled with whatever you specify under the spcific declaration.
 
 NOTE: It's best to include granularity that matches the specific milestones of your range. If Granularity is not included, Proficio JS will default to a number with 2 decimal places, which may be a bit harder to match to a range milestone and may require a large number of style declarations.
 
@@ -100,9 +101,17 @@ NOTE: It's best to include granularity that matches the specific milestones of y
 * `granularity` - the value will be changed by the level of granularity passed in (if 5, then the range will change only by 5s). **It's highly recommended to use this as its exclusion may yield extreme weirdness!**
 * `orientation` - 'h' for horizontal, 'v' for vertical
 * `callback` - the custom callback function for advanced implementations. You can use `this` to access the specific Proficio instance.
+* `playSpeed` - speed in ms for how fast to play the range when `.play()` is called on the instance.
 
 ### API Methods
 
 `step(direction)` - Allows for stepping through the range from the outside. `direction` can be `up` or `down`. If the current range value is `50` and the `granularity` is `10`, calling `instance.step('up')` would result in the value of `60` and `instance.step('down')` would result in `40`.
 
 `set(value)` - Allows for value of the range to be set from the outside. Calling `instance.set('10')` would result in the instance value to be set to `10`.
+
+`play()` - Plays the range automatically. The play speed is based on either the `playSpeed` option passed in or defaults to 100ms.
+
+`pause()` - Pauses the range at the current play progress marker.
+
+`stop()` - Stops the playing range and resets the range to min value passed in.
+

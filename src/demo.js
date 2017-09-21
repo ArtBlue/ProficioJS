@@ -48,11 +48,25 @@
 		orientation: 'h'
 	}
 
+	var options4 = {
+		id: 'demo4',
+		name: 'demo4',
+		targetContainer: '#demo4-target',
+		rangeContainer: '#demo4',
+		val: 1,
+		min: 1,
+		max: 50,
+		granularity: "1",
+		playSpeed: 100
+	}
+
 	document.addEventListener('DOMContentLoaded',function() {
 		var myProficio1 = new Proficio(options1)
 			, myProficio2 = new Proficio(options2)
 			, myProficio3 = new Proficio(options3)
+			, myProficio4 = new Proficio(options4)
 			, btnStepper = document.querySelector('.rangeStepper')
+			, btnPlayer = document.querySelector('.rangePlayer')
 			, demo3Form = document.querySelector('#demo3-form')
 			, demo3Input = document.querySelector('#demo3-input')
 			, myProficio3Submit = demo3Form.addEventListener('submit', function(e){
@@ -67,9 +81,32 @@
 				// step up/down on the range directly
 				myProficio3.step(dir);
 			}, false)
+			, myProficio4Change = btnPlayer.addEventListener('click', function(e){
+				var tar = e.target
+					, action = tar.getAttribute('data-action')
+				;
+
+				if (!action) {
+					return;
+				}
+
+				switch (action) {
+					case 'play':
+						myProficio4.play();
+						break;
+					case 'pause':
+						myProficio4.pause();
+						break;
+					case 'stop':
+						myProficio4.stop();
+						break;
+					default:
+						break;
+				}
+			}, false)
 		;
 
-		console.warn(myProficio1, myProficio2, myProficio3);
+		console.warn(myProficio1, myProficio2, myProficio3, myProficio4);
 	},false);
 
 })();
