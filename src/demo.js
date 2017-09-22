@@ -9,8 +9,7 @@
 		val: 25,
 		min: 0,
 		max: 100,
-		granularity: "5",
-		orientation: 'h'
+		granularity: "5"
 	}
 
 	var options2 = {

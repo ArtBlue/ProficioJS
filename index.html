@@ -5,54 +5,171 @@
 	<meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="libs/input-range-stylize.min.css">
+    <link rel="stylesheet" type="text/css" href="libs/syntax-chroma-default.css">
+    <link rel="stylesheet" type="text/css" href="libs/syntax-chroma-red.css">
 	<link rel="stylesheet" type="text/css" href="css/proficio.css">
 	<link rel="stylesheet" type="text/css" href="css/demo.css">
 </head>
 <body>
-	<h1>Proficio JS</h1>
-
-	<div class="demo-group">
-		<h2>Demo 1</h2>
-		<p>Simple demo</p>
-		<div id="demo1"></div>
-		<div id="demo1-target"></div>
-	</div>
-
-	<div class="demo-group">
-		<h2>Demo 2 (vertical)</h2>
-		<p>Advanced demo with custom callback for range changes</p>
-		<div id="demo2"></div>
-		<div id="demo2-target"></div>
-	</div>
-
-	<div class="demo-group">
-		<h2>Demo 3</h2>
-		<p>Advanced demo with external `stepUp()`, `stepDown()` and direct value set.</p>
-		<div class="rangeStepper">
-			<button id="demo3-stepUp" data-direction="up">+</button>
-			<button id="demo3-stepDown" data-direction="down">-</button>
+	<div id="header" class="container-fluid">
+		<div class="jumbotron">
+			<div class="container">
+				<h1 class="display-3">Proficio JS</h1>
+				<p class="lead">An abstract interactive range visualization engine in vanilla JS.</p>
+				<hr class="my-4">
+				<div class="col-6 mx-auto">
+					<p>Build really cool transitional effects, such as interactive infographics, spread or progress of whatever (illnesses, populations, ideas, etc.) on maps, and whatever else you can dream up.</p>
+				</div>
+				<p class="lead">
+				<a class="btn btn-outline-warning btn-lg" href="https://github.com/ArtBlue/ProficioJS" role="button">View on Github</a>
+				</p>
+			</div>
 		</div>
-		<form id="demo3-form">
-			<input type="text" id="demo3-input">
-			<button type="submit">Change Value</button>
-		</form>
-		<div id="demo3"></div>
-		<div id="demo3-target"></div>
 	</div>
 
-	<div class="demo-group">
-		<h2>Demo 4</h2>
-		<p>Advanced demo with external `play()` functionality and custom play speed.</p>
-		<div class="rangePlayer">
-			<button id="demo4-play" data-action="play">Play</button>
-			<button id="demo4-pause" data-action="pause">Pause</button>
-			<button id="demo4-stop" data-action="stop">Stop</button>
+	<div class="container">
+
+		<div class="demo-group">
+			<h2>Basic Implementation</h2>
+<code data-lang="JS">
+document.addEventListener('DOMContentLoaded',function() {
+	var options = {
+		id: 'demo1',
+		name: 'demo1',
+		targetContainer: '#demo1-target',
+		rangeContainer: '#demo1',
+		val: 25,
+		min: 0,
+		max: 100,
+		granularity: "5"
+	}
+	var myProficio1 = new Proficio(options);
+},false);
+</code>
+			<p>Drag the control...</p>
+			<div id="demo1"></div>
+			<div id="demo1-target"></div>
 		</div>
-		<div id="demo4"></div>
-		<div id="demo4-target"></div>
+
+		<div class="demo-group">
+			<h2>Vertical Implementation</h2>
+			<p>Advanced demo with custom callback for range changes:</p>
+<code data-lang="JS">
+document.addEventListener('DOMContentLoaded',function() {
+	var options = {
+		id: 'demo2',
+		name: 'demo2',
+		targetContainer: '#demo2-target',
+		rangeContainer: '#demo2',
+		val: 10,
+		min: 0,
+		max: 100,
+		granularity: "10",
+		orientation: 'v',
+		callback: function() {
+			var myRangeInstance = this
+				, myTargetElem = document.querySelector('#demo2-target')
+				, myRangeVal = myRangeInstance.val
+				, myNewOpacity = myRangeVal/100;
+			;
+			console.log('My custom callback with my Proficio JS instance: ', myRangeInstance)
+			console.log('Setting the opacity of the target based on the progress made in the range: ' + myNewOpacity);
+
+			myTargetElem.style.cssText = 'opacity: ' + myNewOpacity;
+		}
+	}
+	var myProficio2 = new Proficio(options);
+},false);
+</code>
+			<p>Drag the control...</p>
+			<div id="demo2"></div>
+			<div id="demo2-target"></div>
+		</div>
+<code data-lang="JS">
+document.addEventListener('DOMContentLoaded',function() {
+	var options = {
+		id: 'demo3',
+		name: 'demo3',
+		targetContainer: '#demo3-target',
+		rangeContainer: '#demo3',
+		val: 25,
+		min: 0,
+		max: 100,
+		granularity: "5",
+		orientation: 'h'
+	}
+	var myProficio3 = new Proficio(options);
+	// use new instance to call API methods
+	myProficio3.step('down');
+	myProficio3.step('up');
+	myProficio3.set(10);
+},false);
+</code>
+
+		<div class="demo-group">
+			<h2>Advanced Implementation With step() and set() Controls</h2>
+			<p>Advanced demo with external <u>step()</u> and <u>set()</u> controls.</p>
+			
+			<div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
+				<div class="btn-group mr-2 rangeStepper" role="group" aria-label="First group">
+					<button type="button" id="demo3-stepUp" data-direction="up" class="btn btn-primary">+</button>
+					<button type="button" id="demo3-stepDown" data-direction="down" class="btn btn-primary">-</button>
+				</div>
+				<form id="demo3-form" class="input-group">
+					<input type="text" id="demo3-input" class="form-control" placeholder="Enter Value" aria-label="Enter Value" aria-describedby="btnGroupAddon">
+					<button type="submit" class="btn btn-primary">Change Value</button>
+				</form>
+			</div>
+			<div id="demo3"></div>
+			<div id="demo3-target"></div>
+		</div>
+
+		<div class="demo-group">
+			<h2>Advanced Implementation With play(), pause() and stop() Controls</h2>
+			<p>Advanced demo with external `play()` functionality and custom play speed.</p>
+<code data-lang="JS">
+document.addEventListener('DOMContentLoaded',function() {
+	var options = {
+		id: 'demo4',
+		name: 'demo4',
+		targetContainer: '#demo4-target',
+		rangeContainer: '#demo4',
+		val: 1,
+		min: 1,
+		max: 50,
+		granularity: "1",
+		playSpeed: 250
+	}
+	var myProficio4 = new Proficio(options);
+	// use new instance to call API methods
+	myProficio4.play();  // automatically plays the range
+	myProficio4.pause(); // pauses the playing range
+	myProficio4.stop();  // stops and reset the range
+},false);
+</code>
+			<div class="rangePlayer">
+				<div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
+					<div class="btn-group mr-2" role="group" aria-label="First group">
+						<button type="button" id="demo4-play" data-action="play" class="btn btn-primary">Play</button>
+						<button type="button" id="demo4-pause" data-action="pause" class="btn btn-primary">Pause</button>
+						<button type="button" id="demo4-stop" data-action="stop" class="btn btn-primary">Stop</button>
+					</div>
+				</div>
+			</div>
+			<div id="demo4"></div>
+			<div id="demo4-target"></div>
+		</div>
+
+		<h3>Documentation</h3>
+		<p>
+			For full documentation, please see the `docs` folder or the readme of the <a href="https://github.com/ArtBlue/ProficioJS" target="_blank">Github repository</a>.
+		</p>
 	</div>
 
+	<script type="text/javascript" src="libs/syntax-chroma.min.js"></script>
 	<script type="text/javascript" src="src/proficio.js"></script>
 	<script type="text/javascript" src="src/demo.js"></script>
 </body>

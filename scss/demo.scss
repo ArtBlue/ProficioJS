@@ -1,27 +1,41 @@
 // demo.scss
 
 body {
-	font-family: Arial, sans-serif;
+	font-family: 'Open Sans', Arial, sans-serif;
 }
 
-h1 {
-	font-size: 20px;
+#header,
+.jumbotron {
+	background-color: #004973;
+	color: #bbb;
+	text-align: center;
 }
 
-h2 {
-	font-size: 18px;
+.jumbotron hr {
+	border-top: 1px solid rgba(255, 255, 255, 0.35);
 }
 
-h3 {
-	font-size: 16px;
+h1.display-3 {
+	color: #fff;
+	font-weight: bold;
+	text-shadow: 3px 3px 3px rgba(0,0,0,0.5);
+	margin-bottom: 25px;
+}
+
+code {
+	margin-bottom: 20px;
 }
 
 .demo-group {
-	margin: 35px 0;
-    border: 1px solid #ccc;
-    padding: 15px;
-    background: #e1e1e1;
-    border-radius: 5px;
+	margin: 0 0 30px 0;
+}
+
+.demo-group h2 {
+	margin-bottom: 15px;
+}
+
+.demo-group h3 {
+	margin-top: 30px;
 }
 
 // demo1 visuals
