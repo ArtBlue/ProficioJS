@@ -43,7 +43,7 @@ code {
 // core view and default settings
 #demo1-target {
 	height: 200px;
-	background: #efefef;
+	background: #000;
 	transition: background 500ms ease-in-out;
 
 		&[data-range-value='0'] {
@@ -94,7 +94,7 @@ code {
 	display: table-cell;
 	height: 200px;
 	width: 100%;
-	background: #efefef;
+	background: #000;
 	transition: background 500ms ease-in-out;
 
 		&[data-range-value='0'] {
@@ -146,7 +146,7 @@ code {
 #demo3-target {
 	height: 200px;
 	width: 100%;
-	background: #efefef;
+	background: #000;
 	transition: background 500ms ease-in-out;
 
 		&[data-range-value='0'] {
@@ -186,6 +186,53 @@ code {
 		}
 
 		&[data-range-value='90'] {
+			background: green;
+		}
+}
+
+#demo4-target {
+	height: 200px;
+	width: 100%;
+	background: #000;
+	transition: background 250ms ease-in-out;
+
+		&[data-range-value='1'] {
+			background: #000;
+		}
+
+		&[data-range-value='2'] {
+			background: #ccc;
+		}
+
+		&[data-range-value='3'] {
+			background: #f67;
+		}
+
+		&[data-range-value='4'] {
+			background: #ff6600;
+		}
+
+		&[data-range-value='5'] {
+			background: #ffcc00;
+		}
+
+		&[data-range-value='6'] {
+			background: #69c;
+		}
+
+		&[data-range-value='7'] {
+			background: yellow;
+		}
+
+		&[data-range-value='8'] {
+			background: magenta;
+		}
+
+		&[data-range-value='9'] {
+			background: teal;
+		}
+
+		&[data-range-value='10'] {
 			background: green;
 		}
 }

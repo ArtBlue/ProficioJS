@@ -30,7 +30,7 @@ code {
 
 #demo1-target {
   height: 200px;
-  background: #efefef;
+  background: #000;
   transition: background 500ms ease-in-out; }
   #demo1-target[data-range-value='0'] {
     background: #000; }
@@ -57,7 +57,7 @@ code {
   display: table-cell;
   height: 200px;
   width: 100%;
-  background: #efefef;
+  background: #000;
   transition: background 500ms ease-in-out; }
   #demo2-target[data-range-value='0'] {
     background: #000; }
@@ -86,7 +86,7 @@ code {
 #demo3-target {
   height: 200px;
   width: 100%;
-  background: #efefef;
+  background: #000;
   transition: background 500ms ease-in-out; }
   #demo3-target[data-range-value='0'] {
     background: #000; }
@@ -107,4 +107,30 @@ code {
   #demo3-target[data-range-value='80'] {
     background: teal; }
   #demo3-target[data-range-value='90'] {
+    background: green; }
+
+#demo4-target {
+  height: 200px;
+  width: 100%;
+  background: #000;
+  transition: background 250ms ease-in-out; }
+  #demo4-target[data-range-value='1'] {
+    background: #000; }
+  #demo4-target[data-range-value='2'] {
+    background: #ccc; }
+  #demo4-target[data-range-value='3'] {
+    background: #f67; }
+  #demo4-target[data-range-value='4'] {
+    background: #ff6600; }
+  #demo4-target[data-range-value='5'] {
+    background: #ffcc00; }
+  #demo4-target[data-range-value='6'] {
+    background: #69c; }
+  #demo4-target[data-range-value='7'] {
+    background: yellow; }
+  #demo4-target[data-range-value='8'] {
+    background: magenta; }
+  #demo4-target[data-range-value='9'] {
+    background: teal; }
+  #demo4-target[data-range-value='10'] {
     background: green; }

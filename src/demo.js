@@ -54,9 +54,9 @@
 		rangeContainer: '#demo4',
 		val: 1,
 		min: 1,
-		max: 50,
+		max: 10,
 		granularity: "1",
-		playSpeed: 100
+		playSpeed: 500
 	}
 
 	document.addEventListener('DOMContentLoaded',function() {
