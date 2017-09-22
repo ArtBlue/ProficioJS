@@ -115,3 +115,4 @@ NOTE: It's best to include granularity that matches the specific milestones of y
 
 `stop()` - Stops the playing range and resets the range to min value passed in.
 
+
